@@ -1,0 +1,114 @@
+.medievalsharp-regular {
+  font-family: "MedievalSharp", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+#ventana {
+  background-image: url("./assets/boss2.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: goldenrod;
+  max-width: 500px;
+  min-width: 400px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+#cerrar {
+  display: none;
+}
+#contenedor {
+  width: 100%;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#resultados {
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  min-width: 30px;
+  min-height: 30%;
+}
+
+button {
+  width: 50%;
+  margin: o auto;
+  color: red;
+
+  background-color: white;
+}
+input {
+  background-color: wheat;
+  text-align: center;
+  font-size: 1rem;
+}
+#sello {
+  width: 50%;
+  min-width: 300px;
+  background: local;
+  filter: drop-shadow(0 0 0.2rem greenyellow);
+}
+#Titulo {
+  width: auto;
+  min-width: 300px;
+  height: auto;
+  min-height: 100px;
+  font-family: "MedievalSharp";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: greenyellow;
+  margin: 0 auto;
+}
+
+#subm {
+  width: 70%;
+  min-width: 300px;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.im {
+  width: 100px;
+  min-width: 50px;
+  background: local;
+}
+#oh {
+  filter: drop-shadow(0 0 1rem yellow);
+}
+#oh1 {
+  filter: drop-shadow(0 0 1rem red);
+}
+* {
+  background-color: black;
+}
+#cuerpo {
+  width: 100%;
+  height: 80%;
+  min-height: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+#monja {
+  display: none;
+}
