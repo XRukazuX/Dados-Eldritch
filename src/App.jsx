@@ -1,6 +1,4 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import a from "./assets/sello.png";
 import ben from "./assets/manos.png";
@@ -29,40 +27,42 @@ function App() {
   }*/
   console.log(num);
   function lanzar(dado, condicion) {
-    let dados = parseInt(dado);
-    let exitos = 0;
-    let fallo = 0;
-    if (condicion) {
-      for (let index = 0; index < dados; index++) {
-        let s = Math.floor(Math.random() * 6 + 1);
-        console.log("bendecido");
-        if (s == 5 || s == 6 || s == 4) {
-          console.log("existos");
-          exitos++;
-        } else {
-          console.log("fallaste");
-          fallo++;
+    if (dado <= 20) {
+      let dados = parseInt(dado);
+      let exitos = 0;
+      let fallo = 0;
+      if (condicion) {
+        for (let index = 0; index < dados; index++) {
+          let s = Math.floor(Math.random() * 6 + 1);
+          console.log("bendecido");
+          if (s == 5 || s == 6 || s == 4) {
+            console.log("existos");
+            exitos++;
+          } else {
+            console.log("fallaste");
+            fallo++;
+          }
         }
-      }
-      /*console.log("Nuemro de " + exitos + " " + fallo);*/
-      setwin(exitos);
-      setvent(!vent);
-    } else if (!condicion) {
-      console.log("Normal");
-      for (let index = 0; index < dados; index++) {
-        let s = Math.floor(Math.random() * 6 + 1);
-        if (s == 5 || s == 6) {
-          console.log("existos");
-          exitos++;
-        } else {
-          console.log("fallaste");
-          fallo++;
+        /*console.log("Nuemro de " + exitos + " " + fallo);*/
+        setwin(exitos);
+        setvent(!vent);
+      } else if (!condicion) {
+        console.log("Normal");
+        for (let index = 0; index < dados; index++) {
+          let s = Math.floor(Math.random() * 6 + 1);
+          if (s == 5 || s == 6) {
+            console.log("existos");
+            exitos++;
+          } else {
+            console.log("fallaste");
+            fallo++;
+          }
         }
+        console.log("Nuemro de " + exitos);
+        setwin(exitos);
+        setvent(!vent);
       }
-      console.log("Nuemro de " + exitos);
-      setwin(exitos);
-      setvent(!vent);
-    }
+    } else alert("Cantidad de dados incorrecta");
   }
   return (
     <>
