@@ -28,11 +28,11 @@ function App() {
     console.log("erroe");
   }*/
   console.log(num);
-  function lanzar(d, b) {
-    let dados = parseInt(d);
+  function lanzar(dado, condicion) {
+    let dados = parseInt(dado);
     let exitos = 0;
     let fallo = 0;
-    if (b) {
+    if (condicion) {
       for (let index = 0; index < dados; index++) {
         let s = Math.floor(Math.random() * 6 + 1);
         console.log("bendecido");
@@ -47,7 +47,7 @@ function App() {
       /*console.log("Nuemro de " + exitos + " " + fallo);*/
       setwin(exitos);
       setvent(!vent);
-    } else if (!b) {
+    } else if (!condicion) {
       console.log("Normal");
       for (let index = 0; index < dados; index++) {
         let s = Math.floor(Math.random() * 6 + 1);
@@ -102,7 +102,11 @@ function App() {
             Lanzar
           </button>
         </form>
-        <div id={vent ? "ventana" : "cerrar"} onClick={() => setvent(!vent)}>
+        <div
+          id={vent ? "ventana" : "cerrar"}
+          className={cruz ? "fondo2" : "fondo"}
+          onClick={() => setvent(!vent)}
+        >
           <h1>Numero de exitos</h1>
 
           <h2>{win}</h2>
