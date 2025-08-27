@@ -11,10 +11,12 @@ function App() {
   const [vent, setvent] = useState(false);
   useEffect(() => {
     let audi = document.querySelector("audio");
+    if (vent) {
+      audi.play();
+    }
     const asd = document.getElementById("eve");
     asd.addEventListener("click", function () {
       audi.play();
-      //alert("funciona");
     });
   }, []);
   console.log(cruz + " estados del cheack");
@@ -26,15 +28,7 @@ function App() {
     console.log(dado);
     console.log(parseInt(dado));
   };
-  let x = 3;
 
-  /*let num = document.getElementById("valor1");
-  if (num) {
-    console.log("dato captado");
-  } else {
-    console.log("erroe");
-  
-  console.log(num);*/
   function lanzar(dado, condicion) {
     if (dado <= 20) {
       let dados = parseInt(dado);
