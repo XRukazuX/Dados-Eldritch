@@ -19,14 +19,14 @@ function App() {
       audi.play();
     });
   }, []);
-  console.log(cruz + " estados del cheack");
+  //console.log(cruz + " estados del cheack");
   const change = ({ target }) => {
     setdado(target.value);
   };
   const submit = (e) => {
     e.preventDefault();
-    console.log(dado);
-    console.log(parseInt(dado));
+    //console.log(dado);
+    //console.log(parseInt(dado));
   };
 
   function lanzar(dado, condicion) {
@@ -37,12 +37,12 @@ function App() {
       if (condicion) {
         for (let index = 0; index < dados; index++) {
           let s = Math.floor(Math.random() * 6 + 1);
-          console.log("bendecido");
+          //console.log("bendecido");
           if (s == 5 || s == 6 || s == 4) {
-            console.log("existos");
+            //console.log("existos");
             exitos++;
           } else {
-            console.log("fallaste");
+            //console.log("fallaste");
             fallo++;
           }
         }
@@ -50,18 +50,18 @@ function App() {
         setwin(exitos);
         setvent(!vent);
       } else if (!condicion) {
-        console.log("Normal");
+        //console.log("Normal");
         for (let index = 0; index < dados; index++) {
           let s = Math.floor(Math.random() * 6 + 1);
           if (s == 5 || s == 6) {
-            console.log("existos");
+            //console.log("existos");
             exitos++;
           } else {
-            console.log("fallaste");
+            //console.log("fallaste");
             fallo++;
           }
         }
-        console.log("Nuemro de " + exitos);
+        //console.log("Nuemro de " + exitos);
         setwin(exitos);
         setvent(!vent);
       }
