@@ -8,12 +8,14 @@ h2 {
   background: local;
 }
 .fondo {
+  background: local;
   background-image: url("./assets/boss2.jpg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 .fondo2 {
+  background: local;
   background-image: url("./assets/monja.jpg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -26,7 +28,7 @@ h2 {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  color: goldenrod;
+  color: rgb(169, 221, 144);
   max-width: 500px;
   min-width: 400px;
   position: absolute;

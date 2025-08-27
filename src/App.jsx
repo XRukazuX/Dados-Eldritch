@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import a from "./assets/sello.png";
 import ben from "./assets/manos.png";
+import song from "./assets/Cthulhu.mp3";
 
 function App() {
   const [dado, setdado] = useState(0);
   const [cruz, setcruz] = useState(false);
   const [win, setwin] = useState(0);
   const [vent, setvent] = useState(false);
+  useEffect(() => {
+    let audi = document.querySelector("audio");
+    const asd = document.getElementById("eve");
+    asd.addEventListener("click", function () {
+      audi.play();
+      //alert("funciona");
+    });
+  }, []);
   console.log(cruz + " estados del cheack");
   const change = ({ target }) => {
     setdado(target.value);
@@ -19,13 +28,13 @@ function App() {
   };
   let x = 3;
 
-  let num = document.getElementById("valor1");
-  /*if (num) {
+  /*let num = document.getElementById("valor1");
+  if (num) {
     console.log("dato captado");
   } else {
     console.log("erroe");
-  }*/
-  console.log(num);
+  
+  console.log(num);*/
   function lanzar(dado, condicion) {
     if (dado <= 20) {
       let dados = parseInt(dado);
@@ -64,9 +73,11 @@ function App() {
       }
     } else alert("Cantidad de dados incorrecta");
   }
+
   return (
     <>
       <div id="cuerpo">
+        <audio id="au" src={song} loop preload="auto"></audio>
         <h1 id="Titulo">Dados de Lovecraft</h1>
 
         <div id="contenedor">
@@ -94,6 +105,7 @@ function App() {
             />
           </label>
           <button
+            id="eve"
             onClick={() => {
               lanzar(dado, cruz);
               console.log("Tirada");
@@ -105,7 +117,11 @@ function App() {
         <div
           id={vent ? "ventana" : "cerrar"}
           className={cruz ? "fondo2" : "fondo"}
-          onClick={() => setvent(!vent)}
+          onClick={() => {
+            setvent(!vent);
+            document.getElementById("au").pause();
+            document.getElementById("au").currentTime = 0;
+          }}
         >
           <h1>Numero de exitos</h1>
 
