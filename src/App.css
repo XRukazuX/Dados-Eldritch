@@ -100,8 +100,8 @@ input {
 #Titulo {
   width: auto;
   min-width: 300px;
-  height: auto;
-  min-height: 100px;
+
+  min-height: 50px;
   font-family: "MedievalSharp";
   display: flex;
   align-items: center;
@@ -175,4 +175,33 @@ input {
 }
 #monja {
   display: none;
+}
+
+@media screen and (orientation: landscape) {
+  #cuerpo {
+    height: auto;
+    height: 100dvh;
+    min-height: 400px;
+    gap: 0;
+  }
+  #Titulo {
+    width: 50%;
+    height: 50px;
+    margin: 0 auto;
+  }
+  #contenedor {
+    height: 45%;
+    min-height: 200px;
+  }
+  #subm {
+    height: 45%;
+    gap: 0;
+  }
+  .im {
+    width: 80px;
+    min-width: 50px;
+  }
+  button {
+    font-size: 1rem;
+  }
 }
