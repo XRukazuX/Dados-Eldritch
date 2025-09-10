@@ -5,7 +5,7 @@ import ben from "./assets/manos.png";
 import song from "./assets/Cthulhu.mp3";
 
 function App() {
-  const [dado, setdado] = useState(0);
+  const [dado, setdado] = useState("");
   const [cruz, setcruz] = useState(false);
   const [win, setwin] = useState(0);
   const [vent, setvent] = useState(false);
@@ -22,6 +22,7 @@ function App() {
   //console.log(cruz + " estados del cheack");
   const change = ({ target }) => {
     setdado(target.value);
+    console.log(target.value);
   };
   const submit = (e) => {
     e.preventDefault();
@@ -30,7 +31,9 @@ function App() {
   };
 
   function lanzar(dado, condicion) {
-    if (dado <= 20) {
+    if (dado.trim() == "") {
+      alert("Poner un valor");
+    } else if (dado <= 20) {
       let dados = parseInt(dado);
       let exitos = 0;
       let fallo = 0;
@@ -78,7 +81,12 @@ function App() {
           <img src={a} alt="Lovecraft" id="sello" />
         </div>
         <form action="num" onSubmit={submit} id="subm">
-          <input type="text" id={dado} onChange={change} />
+          <input
+            type="text"
+            placeholder="Numero de dados"
+            value={dado}
+            onChange={change}
+          />
           <input
             type="checkbox"
             onClick={() => {
