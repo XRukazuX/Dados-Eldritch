@@ -85,6 +85,7 @@ function App() {
             type="text"
             placeholder="Numero de dados"
             value={dado}
+            id="texto"
             onChange={change}
           />
           <input
