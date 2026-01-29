@@ -34,7 +34,10 @@ h2 {
   flex-direction: column;
   text-align: center;
   color: rgb(169, 221, 144);
-  text-shadow: 0 0 7px #39ff14, 0 0 10px #39ff14, 0 0 21px #3c6634;
+  text-shadow:
+    0 0 7px #39ff14,
+    0 0 10px #39ff14,
+    0 0 21px #3c6634;
   max-width: 500px;
   min-width: 400px;
   position: absolute;
@@ -89,17 +92,17 @@ button {
   width: 50%;
   min-width: 300px;
   background: local;
-
+  object-fit: cover;
   animation: parpadeo 5s 1 forwards;
 }
 @keyframes parpadeo {
   from {
     filter: drop-shadow(0 0 0rem rgba(77, 128, 2, 0.863));
-    scale: 200%;
+    transform: scale(0.5);
   }
   to {
     filter: drop-shadow(0 0 0.5rem greenyellow);
-    scale: 100%;
+    transform: scale(1);
   }
 }
 #Titulo {
