@@ -1,136 +1,114 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
-import a from "./assets/sello.png";
-import ben from "./assets/manos.png";
+import sello from "./assets/sello.png";
+import bendicion from "./assets/manos.png";
+import maldicion from "./assets/Contrato.png";
 import song from "./assets/Cthulhu.mp3";
-
+import Resultados from "./Components/Resultados";
 function App() {
-  const [dado, setdado] = useState("");
-  const [cruz, setcruz] = useState(false);
-  const [win, setwin] = useState(0);
-  const [vent, setvent] = useState(false);
-  useEffect(() => {
-    let audi = document.querySelector("audio");
-    if (vent) {
-      audi.play();
-    }
-    const asd = document.getElementById("eve");
-    asd.addEventListener("click", function () {
-      audi.play();
-    });
-  }, []);
-  //console.log(cruz + " estados del cheack");
-  const change = ({ target }) => {
-    setdado(target.value);
-    console.log(target.value);
+  const [valor, setValor] = useState(""); //Valores de la cantidad de dados usados
+  const [dado, setDado] = useState([]); //Array de datos obtenidos
+  const [exitos, setExitos] = useState(0); //Numero de exitos
+  const [show, setShow] = useState(false);
+  const [bendecido, setBendecido] = useState(false);
+  const [maldecido, setMaldecido] = useState(false);
+  const audioRef = useRef(null); //Datos de Dom del audio
+  const closeshow = () => {
+    setShow(false);
+    setDado([]);
+    setExitos(0);
+    setValor("");
+    /*audioRef.current.pause();*/
   };
-  const submit = (e) => {
-    e.preventDefault();
-    //console.log(dado);
-    //console.log(parseInt(dado));
-  };
+  const Tiro = () => {
+    const numero = Number(valor);
 
-  function lanzar(dado, condicion) {
-    if (dado.trim() == "") {
-      alert("Poner un valor");
-    } else if (dado <= 20) {
-      let dados = parseInt(dado);
-      let exitos = 0;
-      let fallo = 0;
-      if (condicion) {
-        for (let index = 0; index < dados; index++) {
-          let s = Math.floor(Math.random() * 6 + 1);
-          //console.log("bendecido");
-          if (s == 5 || s == 6 || s == 4) {
-            //console.log("existos");
-            exitos++;
-          } else {
-            //console.log("fallaste");
-            fallo++;
-          }
-        }
-        /*console.log("Nuemro de " + exitos + " " + fallo);*/
-        setwin(exitos);
-        setvent(!vent);
-      } else if (!condicion) {
-        //console.log("Normal");
-        for (let index = 0; index < dados; index++) {
-          let s = Math.floor(Math.random() * 6 + 1);
-          if (s == 5 || s == 6) {
-            //console.log("existos");
-            exitos++;
-          } else {
-            //console.log("fallaste");
-            fallo++;
-          }
-        }
-        //console.log("Nuemro de " + exitos);
-        setwin(exitos);
-        setvent(!vent);
+    if (numero > 0 && numero <= 20) {
+      const nuevosDados = [];
+
+      for (let i = 0; i < numero; i++) {
+        const random = Math.floor(Math.random() * 6) + 1;
+        nuevosDados.push(random);
       }
-    } else alert("Cantidad de dados incorrecta");
-  }
+
+      setDado(nuevosDados);
+      let estado = bendecido ? 3 : maldecido ? 5 : 4;
+      let newexitos = nuevosDados.filter((e) => e > estado).length;
+      setExitos(newexitos);
+      /*if (audioRef.current) {
+        audioRef.current.currentTime = 0;
+        audioRef.current.play();
+      }*/
+      setShow(true);
+    } else {
+      console.log("Los valores puestos no son aceptables");
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Tiro();
+  }; // Con el submit basico ya te toma como enter el keydown asi que es innecesario
+  useEffect(() => {
+    if (audioRef?.current) {
+      console.log("Audio montado");
+    }
+  }, []);
 
   return (
     <>
-      <div id="cuerpo">
-        <audio id="au" src={song} loop preload="auto"></audio>
-        <h1 id="Titulo">Dados de Lovecraft</h1>
-
-        <div id="contenedor">
-          <img src={a} alt="Lovecraft" id="sello" />
+      <div className="Contenedor">
+        <div className="Titulo">
+          <h1>Dados de Lovecraft</h1>
         </div>
-        <form action="num" onSubmit={submit} id="subm">
-          <input
-            type="text"
-            placeholder="Numero de dados"
-            value={dado}
-            id="texto"
-            onChange={change}
-          />
-          <input
-            type="checkbox"
-            onClick={() => {
-              setcruz(!cruz);
-              let m = document.getElementById("monja").value;
-              console.log(m);
-            }}
-            name="Bendecido"
-            value={cruz}
-            id="monja"
-          />
-          <label htmlFor="monja">
-            <img
-              src={ben}
-              alt="bandicion"
-              id={cruz ? "oh" : "oh1"}
-              className="im"
+        <div className="Logo">
+          <img src={sello} className="Sello" alt="Sello de Lovecraft" />
+        </div>
+        <div className="Form-dado">
+          <form onSubmit={handleSubmit} className="Form-Input">
+            <input
+              type="number"
+              inputMode="numeric"
+              value={valor}
+              autoComplete="off"
+              placeholder="🎲 Numero de dados 🎲"
+              id="Input-dado"
+              onChange={(e) => setValor(e.target.value)}
             />
-          </label>
+          </form>
+        </div>
+        <div className="Estado">
           <button
-            id="eve"
+            className={`Estado-Boton ${bendecido ? "activadoB" : ""}`}
             onClick={() => {
-              lanzar(dado, cruz);
-              console.log("Tirada");
+              setBendecido(!bendecido);
+              if (!bendecido) setMaldecido(false);
             }}
           >
-            Lanzar
+            <img src={bendicion} alt="Bendicion" />
           </button>
-        </form>
-        <div
-          id={vent ? "ventana" : "cerrar"}
-          className={cruz ? "fondo2" : "fondo"}
-          onClick={() => {
-            setvent(!vent);
-            document.getElementById("au").pause();
-            document.getElementById("au").currentTime = 0;
-          }}
-        >
-          <h1>Numero de exitos</h1>
-
-          <h2>{win}</h2>
+          <button
+            className={`Estado-Boton ${maldecido ? "activadoM" : ""}`}
+            onClick={() => {
+              setMaldecido(!maldecido);
+              if (!maldecido) setBendecido(false);
+            }}
+          >
+            <img src={maldicion} alt="Maldicion" />
+          </button>
         </div>
+        {show ? (
+          <Resultados
+            dado={dado}
+            exitos={exitos}
+            closeshow={closeshow}
+            bendecido={bendecido}
+            maldecido={maldecido}
+          />
+        ) : (
+          ""
+        )}
       </div>
+      <audio src={song} ref={audioRef}></audio>
     </>
   );
 }
