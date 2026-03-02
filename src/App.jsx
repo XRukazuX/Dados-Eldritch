@@ -18,7 +18,9 @@ function App() {
     setDado([]);
     setExitos(0);
     setValor("");
-    /*audioRef.current.pause();*/
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
   };
   const Tiro = () => {
     const numero = Number(valor);
@@ -35,10 +37,10 @@ function App() {
       let estado = bendecido ? 3 : maldecido ? 5 : 4;
       let newexitos = nuevosDados.filter((e) => e > estado).length;
       setExitos(newexitos);
-      /*if (audioRef.current) {
+      if (audioRef.current) {
         audioRef.current.currentTime = 0;
         audioRef.current.play();
-      }*/
+      }
       setShow(true);
     } else {
       console.log("Los valores puestos no son aceptables");
