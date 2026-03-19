@@ -1,4 +1,5 @@
 Este es un proyecto de prueba que se enfoca en la creacion de una pagina para simular los dados del juego "Eldritch Horror". Si no se tiene los dados o te faltan para jugar, este famoso juego de mesa, se puede usar este proyecto.
+![Demo](./src/assets/Demo.gif)
 Explicacion de los dados:
 
 - Las caras del 1 al 4 se consideran "fallos".

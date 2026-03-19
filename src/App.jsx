@@ -43,6 +43,7 @@ function App() {
       }
       setShow(true);
     } else {
+      alert("Numero de dados no aceptable");
       console.log("Los valores puestos no son aceptables");
     }
   };
@@ -72,7 +73,7 @@ function App() {
               inputMode="numeric"
               value={valor}
               autoComplete="off"
-              placeholder="🎲 Numero de dados 🎲"
+              placeholder="🎲 Numero de dados 🎲. (Maximo 20)"
               id="Input-dado"
               onChange={(e) => setValor(e.target.value)}
             />
